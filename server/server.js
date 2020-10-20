@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
-// const morgan = require("morgan");
+const morgan = require("morgan");
 const app = express();
 
-// app.use(express.json)
+app.use(express.json())
 
 //get all restaurants
 app.get("/api/v1/restaurants", (req, res) => {
@@ -23,7 +23,7 @@ app.get("/api/v1/restaurants/:id", (req, res) => {
 
 //create restaurant
 app.post("/api/v1/restaurants", (req, res) => {
-  console.log(req)
+  console.log(req.body)
 })
 
 
