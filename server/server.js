@@ -32,17 +32,16 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
   try {
     const results = await db.query(`select * from restaurants where id = ${req.params.id}`)
     
-    console.log(results.rows[0])
+    // console.log(results.rows[0])
+    res.status(200).json({
+      state: "succes",
+      data: {
+        restaurant: results.rows[0],
+      }
+    })
   } catch(err) {
     console.log(err)
   }
-
-  res.status(200).json({
-    state: "sucess",
-    data: {
-      restaurant: "mcdonalds"
-    }
-  })
 })
 
 //create restaurant
