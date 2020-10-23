@@ -30,7 +30,7 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
   console.log(req.params.id)
 
   try {
-    const results = await db.query(`select * from restaurants where id = ${req.params.id}`)
+    const results = await db.query("SELECT * FROM WHERE ID = $1", [req.params.id])
     
     // console.log(results.rows[0])
     res.status(200).json({
@@ -44,15 +44,26 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
   }
 })
 
-//create restaurant
-app.post("/api/v1/restaurants", (req, res) => {
+//create a restaurant
+app.post("/api/v1/restaurants", async (req, res) => {
   console.log(req.body)
-  res.status(201).json({
-    state: "sucess",
-    data: {
-      restaurant: "mcdonalds"
-    }
-  })
+
+  try {
+    const results = await db.query(
+      "INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) returning *",
+      [req.body.name, req.body.location, req.body.price_range]
+    );
+    console.log(results)
+
+    res.status(201).json({
+      state: "succes",
+      data: {
+        restaurant: results.rows[0],
+      },
+    });
+  } catch(err) {
+    console.log(err)
+  }
 })
 
 //update restaurant
