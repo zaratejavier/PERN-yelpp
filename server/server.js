@@ -32,7 +32,6 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
   try {
     const results = await db.query("SELECT * FROM WHERE ID = $1", [req.params.id])
     
-    // console.log(results.rows[0])
     res.status(200).json({
       state: "succes",
       data: {
