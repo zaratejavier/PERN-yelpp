@@ -30,9 +30,9 @@ const RestaurantList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {restaurants.map(restaurant => {
+          {restaurants && restaurants.map(restaurant => {
             return (
-              <tr>
+              <tr key ={restaurant.id}>
                 <td>{restaurant.name}</td>
                 <td>{restaurant.loccation}</td>
                 <td>{"$".repeat(restaurant.price_range)}</td>
