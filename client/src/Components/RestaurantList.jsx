@@ -34,7 +34,7 @@ const RestaurantList = (props) => {
             return (
               <tr key ={restaurant.id}>
                 <td>{restaurant.name}</td>
-                <td>{restaurant.loccation}</td>
+                <td>{restaurant.location}</td>
                 <td>{"$".repeat(restaurant.price_range)}</td>
                 <td>Reviews</td>
                 <td><button className="btn btn-warning">Update</button></td>
