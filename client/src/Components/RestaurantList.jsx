@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react"
 import RestaurantFinder from "../apis/RestaurantFinder"
 import { RestaurantsContext } from "../Context/RestaurantsContext"
+import { useHistory } from "react-router-dom";
 
 const RestaurantList = (props) => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext)
-  let history = useHistory()
+  let history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +30,7 @@ const RestaurantList = (props) => {
   }
 
   const handleUpdate = (id) => {
-    history.pus(`/restaurants/${id}/update`)
+    history.push(`/restaurants/${id}/update`)
   }
 
   return (
