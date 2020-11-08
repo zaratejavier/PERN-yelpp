@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import RestaurantFinder from "../apis/RestaurantFinder";
+import { RestaurantsContext } from "../Context/RestaurantsContext";
 
 const UpdateRestaurant = () => {
   const { id } = useParams();
+  const {restaurants} = useContext(RestaurantsContext)
   const [ name, setName ] = useState("");
   const [ location, setLocation ] = useState("");
-  const [ price_range, setPrice_range ] = useState("");
+  const [priceRange, setPriceRange] = useState("");
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await RestaurantFinder.get(`/${id}`);
+      console.log(response.data.data);
+      setName(response.data.data.restaurant.name);
+      setLocation(response.data.data.restaurant.location);
+      setPriceRange(response.data.data.restaurant.price_range);
+    };
+
+    fetchData()
+  }, [])
 
   return (
     <div>
@@ -33,10 +48,10 @@ const UpdateRestaurant = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="price_range">Price Range</label>
+          <label htmlFor="priceRange">Price Range</label>
           <input
-            value={price_range}
-            onChange={(e) => setPrice_range(e.target.value)}
+            value={priceRange}
+            onChange={(e) => setPriceRange(e.target.value)}
             className="form-control"
             type="number"
             id="price_range"
