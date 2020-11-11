@@ -31,6 +31,7 @@ const RestaurantList = (props) => {
     }
   }
 
+
   const handleUpdate = (e, id) => {
     e.stopPropagation()
     history.push(`/restaurants/${id}/update`)

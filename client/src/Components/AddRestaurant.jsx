@@ -18,9 +18,16 @@ const AddRestaurant = () => {
       })
       addRestaurants(response.data.data.restaurant)
       console.log(response)
-    } catch {
-      
+    } catch(e) {
+      console.log(e)
     }
+    clearForm()
+  }
+
+  const clearForm = () => {
+    setName("")
+    setLocation("")
+    setPriceRange("")
   }
 
   return (
