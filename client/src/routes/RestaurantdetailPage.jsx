@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import RestaurantFinder from '../apis/RestaurantFinder'
+import AddReview from '../Components/AddReview'
 import Reviews from '../Components/Reviews'
 import StarRating from '../Components/StarRating'
 import { RestaurantsContext } from '../Context/RestaurantsContext'
@@ -26,7 +27,8 @@ const RestaurantdetailPage = () => {
       {selectedRestaurant && (
         <>
           <div className="mt-3">
-            <Reviews/>
+            <Reviews />
+            <AddReview/>
           </div>
         </>
       )}
